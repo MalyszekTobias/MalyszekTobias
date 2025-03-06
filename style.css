@@ -1,0 +1,331 @@
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body, p {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: #121212;
+  color: #e0e0e0;
+  text-align: left;
+}
+
+h1, h2, .header-buttons button, .project-name, .description {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #1c1c1c;
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+header h1 {
+  font-size: 36px;
+  margin: 0;
+  text-align: left;
+}
+
+.header-buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+}
+
+.header-buttons button {
+  background-color: #373357;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  height: 40px;
+  width: 150px;
+}
+
+.header-buttons button:hover {
+  background-color: #28283f;
+}
+
+.header-buttons button:first-child {
+  margin-left: 300px;
+}
+
+.header-buttons button:last-child {
+  margin-left: 500px;
+}
+
+.projects {
+  padding: 30px;
+  margin-top: 100px;
+}
+
+.projects h2 {
+  text-align: left;
+  font-size: 28px;
+  margin-bottom: 20px;
+  margin-left: 320px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-items {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.carousel-item img {
+  width: 100%;
+  display: block;
+  transition: filter 0.3s ease;
+}
+
+.carousel-item:hover img {
+  filter: grayscale(70%);
+}
+
+.project-link {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% - 60px);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 32px;
+  transition: top 0.5s ease-in-out, background 0.5s ease-in-out;
+}
+
+.project-description {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 100%;
+  opacity: 0;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  font-size: 20px;
+  transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.carousel-item:hover .project-name {
+  top: 0;
+  background: transparent;
+}
+
+.carousel-item:hover .project-description {
+  top: 72px;
+  opacity: 1;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 10;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+  left: -5px;
+}
+
+.next {
+  right: -5px;
+}
+
+section {
+  padding: 60px 0;
+  background-color: #121212;
+  color: #e0e0e0;
+  margin-top: 20px;
+}
+
+/* Contact Section */
+#about, #contact {
+  text-align: left;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px 0 150px;
+}
+
+#about h2, #contact h2 {
+  position: relative;
+  left: -170px;
+  margin-left: 0;
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+#contact p:first-of-type {
+  margin-bottom: 30px;
+  white-space: nowrap;
+  overflow: visible;
+  max-width: none;
+  font-size: 21px; /* Explicitly restored text size */
+}
+
+#about p:last-child, #contact p:last-child {
+  margin-bottom: 80px;
+}
+
+/* Contact Items */
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 21px;
+}
+
+.contact-icon {
+  font-size: 27px;
+  width: 45px;
+  margin-right: 15px;
+  color: #e0e0e0;
+}
+
+.contact-item span,
+.contact-item a {
+  font-size: 21px;
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background: #1c1c1c;
+  color: #e0e0e0;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .header-buttons {
+    position: static;
+    transform: none;
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
+
+  .header-buttons button {
+    width: auto;
+    margin-left: 0 !important;
+    margin-right: 10px;
+  }
+
+  .projects h2 {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .carousel {
+    max-width: 100%;
+  }
+
+  #about, #contact {
+    padding: 20px;
+  }
+
+  #about h2, #contact h2 {
+    left: 0;
+    text-align: center;
+  }
+
+  #contact p:first-of-type {
+    margin-bottom: 30px;
+    white-space: normal;
+    font-size: 18px; /* Mobile-specific adjustment */
+  }
+
+  .contact-item {
+    font-size: 18px;
+  }
+
+  .contact-item span,
+  .contact-item a {
+    font-size: 18px;
+  }
+
+  .contact-icon {
+    font-size: 22px;
+    width: 40px;
+  }
+
+  #about p:last-child, #contact p:last-child {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 24px;
+  }
+
+  .header-buttons button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .project-name, .project-description {
+    font-size: 18px;
+  }
+}
