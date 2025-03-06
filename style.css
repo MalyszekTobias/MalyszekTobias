@@ -178,6 +178,9 @@ button:hover {
   left: -5px;
 }
 
+#about p {
+  font-size: 24px;
+}
 .next {
   right: -5px;
 }
@@ -210,7 +213,7 @@ section {
   white-space: nowrap;
   overflow: visible;
   max-width: none;
-  font-size: 21px; /* Explicitly restored text size */
+  font-size: 24px; /* Explicitly restored text size */
 }
 
 #about p:last-child, #contact p:last-child {
