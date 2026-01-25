@@ -1,0 +1,316 @@
+:root {
+  --title-duration: 0.5s;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: #121212;
+  color: #e0e0e0;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* HEADER */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: #1c1c1c;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  z-index: 1000;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-family: "Trebuchet MS", sans-serif;
+  white-space: nowrap;
+}
+
+/* Centered section title */
+.page-title {
+  text-align: center;
+  font-size: 32px;
+  font-family: "Trebuchet MS", sans-serif;
+  color: #e0e0e0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.3;
+  transform: translateY(10px);
+  animation: fadeSlideUp 0.7s ease-in forwards;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0.3;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Generic 360° slide-in for project cards only */
+.slide-in-any {
+  transform: translate(var(--start-x, 0px), var(--start-y, 0px));
+  animation: slideInAny 0.8s ease forwards;
+}
+
+@keyframes slideInAny {
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+/* NAV */
+
+.header-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.header-buttons button {
+  background-color: #5a56a8;
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  height: 40px;
+  min-width: 130px;
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.header-buttons button:hover {
+  background-color: #373357;
+}
+
+.header-buttons button.active {
+  background-color: #373357;
+  color: #e0e0e0;
+}
+
+/* MAIN */
+
+main {
+  flex: 1;
+  margin-top: 130px;
+}
+
+section {
+  padding: 60px 0;
+}
+
+/* PROJECTS: grid-based layout replacing carousel */
+
+.projects {
+  padding: 30px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  gap: 48px;
+  /* doubled spacing */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Each project card */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  background: #0f0f0f;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.project-card a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+
+/* Image fits the card width */
+.project-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+
+  /* transition for grayscale syncs with title movement */
+  transition: filter var(--title-duration) ease-in-out;
+  filter: none;
+}
+
+/* Apply grayscale on hover/focus-within, reverses on leave with same timing */
+.project-card:hover img,
+.project-card:focus-within img {
+  filter: grayscale(80%);
+}
+
+/* Overlay title and description (start near bottom) */
+.project-name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% - 60px);
+  padding: 10px;
+  text-align: center;
+  font-size: 32px;
+  font-family: "Trebuchet MS", sans-serif;
+  color: #ffffff;
+  -webkit-text-stroke: 0.3px black;
+  /* thin outline */
+  text-stroke: 0.3px black;
+  text-shadow: 1px 1px 2px black;
+  /* subtle shadow */
+  transition: top var(--title-duration) ease-in-out, background var(--title-duration) ease-in-out;
+}
+
+.project-description {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 100%;
+  opacity: 0;
+  font-size: 20px;
+  color: #ffffff;
+  -webkit-text-stroke: 0.3px black;
+  text-stroke: 0.3px black;
+  text-shadow: 1px 1px 2px black;
+  transition: top var(--title-duration) ease-in-out, opacity var(--title-duration) ease-in-out;
+}
+
+/* Hover behaviour: slide both title and description up */
+.project-card:hover .project-name,
+.project-card:focus-within .project-name {
+  top: 0;
+  background: transparent;
+}
+
+.project-card:hover .project-description,
+.project-card:focus-within .project-description {
+  top: 72px;
+  opacity: 1;
+}
+
+/* ABOUT & CONTACT */
+
+#about,
+#contact {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#about p {
+  font-size: 36px;
+}
+
+#contact p {
+  font-size: 36px;
+}
+
+/* Contact link styling: blue, no underline */
+.contact-item a {
+  font-size: 21px;
+  color: #3498db;
+  text-decoration: none;
+}
+
+/* Contact-item layout */
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 21px;
+}
+
+.contact-icon {
+  font-size: 27px;
+  width: 45px;
+  margin-right: 15px;
+}
+
+/* FOOTER */
+
+footer {
+  background: #1c1c1c;
+  text-align: center;
+  padding: 14px;
+  font-size: 120%;
+}
+
+/* MOBILE */
+
+@media (max-width: 1024px) {
+  .project-name {
+    font-size: 26px;
+  }
+
+  .project-description {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 0 20px;
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+    height: auto;
+  }
+
+  header h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: 28px;
+  }
+
+  .header-buttons {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  #about p,
+  #contact p {
+    font-size: 28px;
+  }
+
+  /* On small screens switch to single column */
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    /* maintain doubled spacing on mobile */
+  }
+
+  .project-name {
+    font-size: 24px;
+    top: calc(100% - 56px);
+  }
+
+  .project-card:hover .project-name,
+  .project-card:focus-within .project-name {
+    top: 0;
+  }
+}
